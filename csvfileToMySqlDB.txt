@@ -1,0 +1,34 @@
+How to load CSV file to MySQL DB in phpMyAdmin(XAMPP):
+
+Step 1: Convert excel sheet file to csv  Open excel file save as .csv extension
+Step 2: Open Windows comment prompt open phpmyadmin SQL bin path ex: C:\xampp\mysql\bin
+Step 3: Login DB and move file
+
+        type command => mysql -u username password
+		
+		then choose Database name => use databasename;
+		
+		create table => create table pinnumber(
+									-> villageName varchar(200),
+									-> officeName varchar(200),
+									-> pincode int(200),
+									-> subdistname varchar(200),
+									-> distName varchar(200),
+									-> stateName varchar(200));
+									
+		Load csv => load data infile 'C:/Users/User/Downloads/Locality_village_pincode_final.csv' into table pincode
+									-> fields terminated by ',';
+									
+		if success will get message in cmd like  => Query OK, 906267 rows affected, 2074 warnings (41.35 sec)
+												Records: 906267  Deleted: 0  Skipped: 0  Warnings: 2074							
+
+More terminate option in csv file:
+												
+fields terminated by – this is why I included step 2. I thought a csv would default to comma separated but at least in my case semicolon was the deafult
+
+enclosed by – my data was not enclosed by anything so I left this as empty string ”
+
+lines terminated by – at first I tried with only ‘\n’ but had to add the ‘\r’ to get rid of a carriage return character being imported into the database
+
+
+
